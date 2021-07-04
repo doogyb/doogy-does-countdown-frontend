@@ -1,17 +1,18 @@
+import * as util from './util.js'
 import { randomLetter, randomNumber } from './random.js'
-import { solveLetters } from './solutions.js'
+import { solveLetters } from './answers.js'
 
 $(function () {
-  const timerLength = 30
+  const timerLength = 2
   const steps = timerLength * 100
   const clockInterval = (1000 * timerLength) / steps
-
   let gameType = 'letters'
 
   $('#answer_display').hide()
-
   $('#numbers_container').hide()
   $('#number_buttons').hide()
+
+  // Switch between game types
 
   $('#number_selector').click(function () {
     gameType = 'numbers'
@@ -41,17 +42,13 @@ $(function () {
     reset()
   })
 
-  function getRandomInt (max) {
-    return Math.floor(Math.random() * Math.floor(max))
-  }
-
   let currentScramble = 0
   const scrambleLimit = 20
   let randomInt
 
   function randomScramble () {
     if (currentScramble <= scrambleLimit) {
-      randomInt = getRandomInt(1000)
+      randomInt = util.getRandomInt(1000)
       $('#target').html(randomInt)
       currentScramble += 1
     } else {

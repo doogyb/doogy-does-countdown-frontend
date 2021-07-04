@@ -1,6 +1,4 @@
-function getRandomInt (max) {
-  return Math.floor(Math.random() * max)
-}
+import * as util from './util.js'
 
 const vowelDistribution = {
   A: 15,
@@ -46,18 +44,18 @@ for (const [key, value] of Object.entries(consonantDistribution)) {
 
 export async function randomLetter (letterType) {
   if (letterType === 'vowel') {
-    return vowels[getRandomInt(vowels.length)]
+    return vowels[util.getRandomInt(vowels.length)]
   }
   if (letterType === 'consonant') {
-    return consonants[getRandomInt(consonants.length)]
+    return consonants[util.getRandomInt(consonants.length)]
   }
 }
 
 export async function randomNumber (numberType) {
   if (numberType === 'large') {
-    return [25, 50, 70, 100][getRandomInt(4)]
+    return [25, 50, 70, 100][util.getRandomInt(4)]
   }
   if (numberType === 'small') {
-    return [1, 2, 3, 4, 5, 6, 7, 8, 9][getRandomInt(9)]
+    return [1, 2, 3, 4, 5, 6, 7, 8, 9][util.getRandomInt(9)]
   }
 }
