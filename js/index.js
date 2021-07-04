@@ -1,4 +1,7 @@
-$(document).ready(function () {
+import { randomLetter, randomNumber } from './random.js'
+import { solveLetters } from './solutions.js'
+
+$(function () {
   const timerLength = 30
   const steps = timerLength * 100
   const clockInterval = (1000 * timerLength) / steps
@@ -24,7 +27,7 @@ $(document).ready(function () {
     reset()
   })
 
-  $('#letter_selector').click(function () {
+  $('#letter_selector').on('click', function () {
     gameType = 'letters'
 
     $('#number_selector').prop('disabled', false)
@@ -126,45 +129,37 @@ $(document).ready(function () {
   let letters = ''
 
   function addLetter (letterType) {
-    $.ajax({
-      type: 'GET',
-      url: 'http://localhost:8080/random/' + letterType.data,
-      contentType: 'text/plain',
-      success: function (data) {
-        letters += data
-        $('#letters')
-          .children()
-          .eq(currentLetter)
-          .find('.letter_box')
-          .text(data.toUpperCase())
-        currentLetter += 1
-        if (currentLetter === 9) {
-          $('#start_timer').prop('disabled', false)
-          $('.letter_button').prop('disabled', true)
-        }
+    randomLetter(letterType.data).then(onLetterSuccess, null)
+    function onLetterSuccess (data) {
+      letters += data
+      $('#letters')
+        .children()
+        .eq(currentLetter)
+        .find('.letter_box')
+        .text(data.toUpperCase())
+      currentLetter += 1
+      if (currentLetter === 9) {
+        $('#start_timer').prop('disabled', false)
+        $('.letter_button').prop('disabled', true)
       }
-    })
+    }
   }
 
   function addNumber (numberType) {
-    $.ajax({
-      type: 'GET',
-      url: 'http://localhost:8080/random/' + numberType.data,
-      contentType: 'text/plain',
-      success: function (data) {
-        letters += data + ','
-        $('#numbers')
-          .children()
-          .eq(currentLetter)
-          .find('.letter_box')
-          .text(data)
-        currentLetter += 1
-        if (currentLetter === 6) {
-          $('#generate').prop('disabled', false)
-          $('.letter_button').prop('disabled', true)
-        }
+    randomNumber(numberType.data).then(onNumberSuccess, null)
+    function onNumberSuccess (data) {
+      letters += data + ','
+      $('#numbers')
+        .children()
+        .eq(currentLetter)
+        .find('.letter_box')
+        .text(data)
+      currentLetter += 1
+      if (currentLetter === 6) {
+        $('#generate').prop('disabled', false)
+        $('.letter_button').prop('disabled', true)
       }
-    })
+    }
   }
 
   $('#vowel').click('vowel', addLetter)
@@ -240,12 +235,7 @@ $(document).ready(function () {
 
   $('#answer_button').click(function () {
     if (gameType === 'letters') {
-      $.ajax({
-        type: 'GET',
-        url: 'http://localhost:8080/answers/letters/' + letters,
-        contentType: 'text/plain',
-        success: displayLetterAnswers
-      })
+      solveLetters(letters).then(displayLetterAnswers, null)
     }
     if (gameType === 'numbers') {
       $.ajax({
