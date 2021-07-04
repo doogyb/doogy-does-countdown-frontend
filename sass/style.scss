@@ -1,0 +1,199 @@
+// Your variable overrides
+
+$primary: #FDFFFC;
+
+h1, .letter_box {
+  font-family: 'Poppins', sans-serif;
+}
+
+#banner_container {
+  background: #00b9af;
+  margin-bottom: 0px;
+}
+
+#main #banner {
+  padding-top: 30px;
+}
+
+#curve {
+  height: 56px;
+  background-image: url(../img/curve.png);
+}
+
+@mixin center-children {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+#main {
+  height: 100vh;
+}
+
+#banner {
+  padding-top: 20px;
+  margin-bottom: 0px;
+  text-align: center;
+  color: white;
+}
+
+$container-max-widths: (
+  xxl: 1800px,
+);
+
+$clock_radius: 500px;
+
+#clock_container {
+  background: #3b87c4;
+}
+
+#clock {
+  /* Full height */
+
+  margin-top: 100px;
+  margin: auto;
+
+  width: $clock_radius;
+  height: $clock_radius;
+  background-image: url(../img/clock/clock.svg);
+
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+  @include center-children;
+
+}
+
+#clock_hand {
+  width: 30px;
+  height: 600px;
+  background: url(../img/clock/sechand.png);
+  z-index: 3;
+}
+
+#game_selector {
+  padding: 25px;
+  background: #245b86
+}
+
+$letter_box_size: 150px;
+
+#main .col-sm {
+  padding: 0px;
+}
+
+.boxes {
+  padding: 45px;
+  background: #245b86;
+
+  #letters.row {
+    padding: 0 180px;
+  }
+
+  #numbers.row {
+    padding: 0 416px;
+  }
+}
+
+.padrow {
+  padding: 25px 0;
+}
+
+.letter_box {
+
+background-color: #4a6fb6;
+  margin: auto;
+  width: $letter_box_size;
+  height: $letter_box_size;
+
+  // border: solid white 4px;
+
+  border-top: solid #6f90ca 6px;
+  border-bottom: solid #2d55a6 6px;
+
+  text-align: center;
+  font-size: 95px;
+  color: white;
+
+}
+
+#numbers {
+  .letter_box {
+    padding-top: 5px;
+    font-size: 80px;
+  }
+}
+
+#target {
+  width: 450px;
+}
+
+button {
+  width: 200px;
+}
+
+#main .button_row {
+  padding: 20px 0;
+  background: #00b9af;
+
+}
+
+#answers {
+  padding-top: 25px;
+  background: #3b87c4;
+}
+
+#answer_button {
+  margin-bottom: 25px;
+}
+
+#answer_display {
+  width: 50%;
+  height: 400px;
+  margin-bottom:50px;
+  overflow: scroll;
+
+}
+#answer_display::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	border-radius: 10px;
+	background-color: $primary;
+}
+#answer_display::-webkit-scrollbar
+{
+	width: 12px;
+	background-color: $primary;
+}
+
+#answer_display::-webkit-scrollbar-thumb
+{
+	border-radius: 10px;
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+	background-color: #245b86;
+}
+
+.number_display {
+  font-size: 30px;
+  color: white;
+}
+
+
+
+table {
+  background: white;
+  height: 100px;
+  width:400px;
+  padding-bottom:25px;
+
+}
+
+
+
+
+// Bootstrap and its default variables
+@import "../node_modules/bootstrap/scss/bootstrap";
