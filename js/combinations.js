@@ -1,16 +1,16 @@
-export function permuteString (string) {
-  const strings = []
-  permute('', string)
-  return strings
+export function permuteString(string) {
+  const strings = [];
+  permute("", string);
+  return strings;
 
-  function permute (curr, rest) {
-    strings.push(curr)
-    if (rest.length !== 0) {
-      for (let i = 0; i < rest.length; i++) {
+  function permute(curr, remaining) {
+    strings.push(curr);
+    if (remaining.length !== 0) {
+      for (let i = 0; i < remaining.length; i++) {
         permute(
-          curr + rest[i],
-          rest.slice(0, i).concat(rest.slice(i + 1, rest.length))
-        )
+          curr + remaining[i],
+          remaining.slice(0, i).concat(remaining.slice(i + 1, remaining.length))
+        );
       }
     }
   }
