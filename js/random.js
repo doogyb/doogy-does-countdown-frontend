@@ -1,6 +1,6 @@
 import * as util from "./util.js";
 
-const vowelDistribution = {
+export const vowelDistribution = {
   A: 15,
   E: 21,
   I: 13,
@@ -8,7 +8,7 @@ const vowelDistribution = {
   U: 5,
 };
 
-const consonantDistribution = {
+export const consonantDistribution = {
   B: 2,
   C: 3,
   D: 6,
@@ -32,25 +32,20 @@ const consonantDistribution = {
   Z: 1,
 };
 
-// TODO letters must be picked *without* replacement.
-
-let vowels = [];
-for (const [key, value] of Object.entries(vowelDistribution)) {
-  vowels = vowels.concat(Array(value).fill(key));
+function distributeArray(distribution) {
+  let array = [];
+  for (const [key, value] of Object.entries(distribution)) {
+    array = array.concat(Array(value).fill(key));
+  }
+  console.log(array);
+  return array;
 }
 
-let consonants = [];
-for (const [key, value] of Object.entries(consonantDistribution)) {
-  consonants = consonants.concat(Array(value).fill(key));
-}
-
-export async function randomLetter(letterType) {
-  if (letterType === "vowel") {
-    return vowels[util.getRandomInt(vowels.length)];
-  }
-  if (letterType === "consonant") {
-    return consonants[util.getRandomInt(consonants.length)];
-  }
+// Takes a distribution which keeps track of which letters have already been chosen
+// Resets when game resets
+export async function randomLetter(distribution) {
+  const array = distributeArray(distribution);
+  return array[util.getRandomInt(array.length)];
 }
 
 export async function randomNumber(numberType) {

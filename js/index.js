@@ -1,6 +1,14 @@
 import * as util from "./util.js";
-import { randomLetter, randomNumber } from "./random.js";
+import {
+  randomLetter,
+  randomNumber,
+  consonantDistribution,
+  vowelDistribution,
+} from "./random.js";
 import { solveLetters, solveNumbers } from "./answers.js";
+
+let consonants = Object.assign({}, consonantDistribution);
+let vowels = Object.assign({}, vowelDistribution);
 
 const timerLength = 1;
 const steps = timerLength * 100;
@@ -95,6 +103,10 @@ $(function () {
   let currentLetter = 0;
 
   function reset() {
+    // Reset letter counts
+    consonants = Object.assign({}, consonantDistribution);
+    vowels = Object.assign({}, vowelDistribution);
+
     $("#answer_button").prop("disabled", true);
     $("#start_timer").prop("disabled", true);
     $("#answer_display").hide();
@@ -127,9 +139,19 @@ $(function () {
 
   function addLetter(event) {
     console.log("Here");
-    randomLetter(event.data.letterType).then(onLetterSuccess, null);
+
+    let letterCounts = null;
+    if (event.data.letterType === "vowel") {
+      letterCounts = vowels;
+    } else {
+      letterCounts = consonants;
+    }
+    console.log("LetterCounts: ", letterCounts);
+    randomLetter(letterCounts).then(onLetterSuccess, null);
     function onLetterSuccess(data) {
+      console.log("Data: ", data);
       letters += data;
+      letterCounts[data] -= 1;
       $("#letters")
         .children()
         .eq(currentLetter)
@@ -169,7 +191,6 @@ $(function () {
     const answers = [];
 
     $.each(data, function (index, value) {
-      console.log(value);
       content += "<th scope = 'col'>" + index + "</th>";
       answers.push(value);
     });
