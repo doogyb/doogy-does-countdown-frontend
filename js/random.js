@@ -1,12 +1,12 @@
-import * as util from './util.js'
+import * as util from "./util.js";
 
 const vowelDistribution = {
   A: 15,
   E: 21,
   I: 13,
   O: 13,
-  U: 5
-}
+  U: 5,
+};
 
 const consonantDistribution = {
   B: 2,
@@ -29,33 +29,35 @@ const consonantDistribution = {
   W: 1,
   X: 1,
   Y: 1,
-  Z: 1
-}
+  Z: 1,
+};
 
-let vowels = []
+// TODO letters must be picked *without* replacement.
+
+let vowels = [];
 for (const [key, value] of Object.entries(vowelDistribution)) {
-  vowels = vowels.concat(Array(value).fill(key))
+  vowels = vowels.concat(Array(value).fill(key));
 }
 
-let consonants = []
+let consonants = [];
 for (const [key, value] of Object.entries(consonantDistribution)) {
-  consonants = consonants.concat(Array(value).fill(key))
+  consonants = consonants.concat(Array(value).fill(key));
 }
 
-export async function randomLetter (letterType) {
-  if (letterType === 'vowel') {
-    return vowels[util.getRandomInt(vowels.length)]
+export async function randomLetter(letterType) {
+  if (letterType === "vowel") {
+    return vowels[util.getRandomInt(vowels.length)];
   }
-  if (letterType === 'consonant') {
-    return consonants[util.getRandomInt(consonants.length)]
+  if (letterType === "consonant") {
+    return consonants[util.getRandomInt(consonants.length)];
   }
 }
 
-export async function randomNumber (numberType) {
-  if (numberType === 'large') {
-    return [25, 50, 70, 100][util.getRandomInt(4)]
+export async function randomNumber(numberType) {
+  if (numberType === "large") {
+    return [25, 50, 75, 100][util.getRandomInt(4)];
   }
-  if (numberType === 'small') {
-    return [1, 2, 3, 4, 5, 6, 7, 8, 9][util.getRandomInt(9)]
+  if (numberType === "small") {
+    return [1, 2, 3, 4, 5, 6, 7, 8, 9][util.getRandomInt(9)];
   }
 }

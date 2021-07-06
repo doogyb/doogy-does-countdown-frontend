@@ -1,30 +1,35 @@
 import { permuteString } from "./combinations.js";
 
 $.ajax({
-  type: "GET",
-  url: "assets/data/words_alpha.txt",
-  contentType: "text/plain",
-  success: parseWords,
+  dataType: "json",
+  url: "assets/data/word_frequencies.json",
+  success: parseFrequencies,
 });
 
-let words;
-function parseWords(data) {
+let counts;
+function parseFrequencies(data) {
   console.log(typeof data);
-  words = new Set(data.split("\r\n"));
+  counts = data;
+  console.log(data);
 }
 
 export async function solveLetters(letters) {
-  const results = permuteString(letters.toLowerCase()).filter((word) =>
-    words.has(word)
+  const filteredWords = permuteString(letters.toLowerCase()).filter(
+    (word) => word in counts
   );
+  const filteredCounts = filteredWords.map((word) => [word, counts[word]]);
+  filteredCounts.sort((a, b) => a[1] - b[1]);
   const stringLengths = {};
 
-  results.forEach(function (value, _) {
-    if (!stringLengths[value.length]) {
-      stringLengths[value.length] = [];
-    }
-    stringLengths[value.length].push(value);
-  });
+  filteredCounts
+    .map((pair) => pair[0])
+    .forEach(function (value, _) {
+      // words less than five are generally ignored on the show
+      if (!stringLengths[value.length]) {
+        stringLengths[value.length] = [];
+      }
+      stringLengths[value.length].push(value);
+    });
 
   return stringLengths;
 }

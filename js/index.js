@@ -2,12 +2,12 @@ import * as util from "./util.js";
 import { randomLetter, randomNumber } from "./random.js";
 import { solveLetters, solveNumbers } from "./answers.js";
 
-$(function () {
-  const timerLength = 2;
-  const steps = timerLength * 100;
-  const clockInterval = (1000 * timerLength) / steps;
-  let gameType = "letters";
+const timerLength = 1;
+const steps = timerLength * 100;
+const clockInterval = (1000 * timerLength) / steps;
+let gameType = "letters";
 
+$(function () {
   $("#answer_display").hide();
   $("#numbers_container").hide();
   $("#number_buttons").hide();
@@ -169,6 +169,7 @@ $(function () {
     const answers = [];
 
     $.each(data, function (index, value) {
+      console.log(value);
       content += "<th scope = 'col'>" + index + "</th>";
       answers.push(value);
     });
@@ -196,6 +197,8 @@ $(function () {
 
     content += "</thead></table>";
     $("#answer_display").html(content);
+    $("#answer_display").css({ height: "400px", overflow: "scroll" });
+
     $("#answer_display").show();
 
     $("html, body").animate(
@@ -217,6 +220,7 @@ $(function () {
     content += data[1].replaceAll("\n", "<br>") + "</div></div>";
 
     $("#answer_display").html(content);
+    $("#answer_display").css({ height: "100%", overflow: "hidden" });
     $("#answer_display").show();
 
     $("html, body").animate(

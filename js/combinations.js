@@ -1,10 +1,10 @@
 export function permuteString(string) {
-  const strings = [];
+  const strings = new Set();
   permute("", string);
-  return strings;
+  return Array.from(strings);
 
   function permute(curr, remaining) {
-    strings.push(curr);
+    strings.add(curr);
     if (remaining.length !== 0) {
       for (let i = 0; i < remaining.length; i++) {
         permute(
