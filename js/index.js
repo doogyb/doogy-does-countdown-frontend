@@ -97,7 +97,7 @@ $(function () {
   let scramble;
   $("#generate").on("click", function () {
     currentScramble = 0;
-    scramble = setInterval(randomScramble, 100);
+    scramble = setInterval(randomScramble, 1);
   });
 
   let currentLetter = 0;
@@ -138,8 +138,6 @@ $(function () {
   let letters = "";
 
   function addLetter(event) {
-    console.log("Here");
-
     let letterCounts = null;
     if (event.data.letterType === "vowel") {
       letterCounts = vowels;
@@ -231,22 +229,35 @@ $(function () {
   }
 
   function displayNumberAnswers(data) {
-    console.log(data);
+    const answers = data[0];
+    const targetFound = data[1];
+    function HtmlAnswer(answer) {
+      let content = "";
+      if (!targetFound) {
+        content +=
+          "<div class='row'><div class='number_display col d-flex justify-content-center'>";
+        content += "Answer not found. Closest answer: ";
+        content += answer.answer + "</div></div>";
+      }
 
-    let content =
-      "<div class='row'><div class='number_display col d-flex justify-content-center'>";
-    content += data[0] + "</div></div>";
-    content +=
-      "<div class='row'><div class='number_display col d-flex justify-content-center'>";
-    content += data[1].replaceAll("\n", "<br>") + "</div></div>";
+      content +=
+        "<div class='row'><div class='number_display col d-flex justify-content-center'>";
+      content += answer.expression.replaceAll("\n", "<br>") + "</div></div>";
 
+      return content;
+    }
+
+    let content = "";
+    answers.splice(0, 25).forEach(function (answer, _) {
+      content += HtmlAnswer(answer);
+    });
     $("#answer_display").html(content);
     $("#answer_display").css({ height: "100%", overflow: "hidden" });
     $("#answer_display").show();
 
     $("html, body").animate(
       {
-        scrollTop: $(document).height(),
+        scrollTop: $(".number_display").height(),
       },
       50
     );
@@ -258,8 +269,6 @@ $(function () {
     }
     if (gameType === "numbers") {
       const numbers = letters.split(",").map((value) => parseInt(value));
-      console.log(numbers.slice(0, -1));
-      console.log(numbers.slice(-1));
       solveNumbers(numbers.slice(0, -1), numbers.slice(-1)).then(
         displayNumberAnswers,
         null

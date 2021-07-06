@@ -37,7 +37,6 @@ function distributeArray(distribution) {
   for (const [key, value] of Object.entries(distribution)) {
     array = array.concat(Array(value).fill(key));
   }
-  console.log(array);
   return array;
 }
 

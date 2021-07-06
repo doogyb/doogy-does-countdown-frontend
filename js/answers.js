@@ -8,9 +8,7 @@ $.ajax({
 
 let counts;
 function parseFrequencies(data) {
-  console.log(typeof data);
   counts = data;
-  console.log(data);
 }
 
 export async function solveLetters(letters) {
@@ -34,10 +32,19 @@ export async function solveLetters(letters) {
   return stringLengths;
 }
 
+const operationComplexity = {
+  "+": 2,
+  "-": 3,
+  "*": 4,
+  "/": 5,
+};
+
 export async function solveNumbers(numbers, target) {
   const space = {};
   const operators = ["+", "-", "/", "*"];
+  let targetFound = false;
 
+  const answers = [];
   let closestAnswer = 0;
   let closestExpression = "";
   let distance = Infinity;
@@ -46,10 +53,21 @@ export async function solveNumbers(numbers, target) {
     const subList = numbers
       .slice(0, i)
       .concat(numbers.slice(i + 1, numbers.length));
-    search(value, "", subList);
+    search(value, "", subList, 0, 0);
   });
 
-  return [closestAnswer, closestExpression];
+  if (!targetFound) {
+    answers.push({
+      answer: closestAnswer,
+      expression: closestExpression,
+      distance: 0,
+    });
+  }
+
+  answers.sort(function (a, b) {
+    return a.complexity - b.complexity;
+  });
+  return [answers, targetFound];
 
   function expressionToString(r, v, op, res) {
     return (
@@ -64,12 +82,22 @@ export async function solveNumbers(numbers, target) {
     );
   }
 
-  function search(result, expression, remaining) {
+  function search(result, expression, remaining, complexity, depth) {
     space[result] = expression;
+
     if (Math.abs(result - target) < distance) {
       closestAnswer = result;
       closestExpression = expression;
       distance = Math.abs(result - target);
+    }
+
+    if (result - target === 0) {
+      targetFound = true;
+      answers.push({
+        answer: result,
+        expression: expression,
+        complexity: complexity,
+      });
     }
 
     if (remaining) {
@@ -77,39 +105,37 @@ export async function solveNumbers(numbers, target) {
         const subList = remaining
           .slice(0, i)
           .concat(remaining.slice(i + 1, remaining.length));
+
         operators.forEach(function (op, _) {
-          if (op === "+") {
-            search(
-              result + value,
-              expression +
-                expressionToString(result, value, "+", result + value),
-              subList
-            );
+          let newResult;
+          switch (op) {
+            case "+":
+              newResult = result + value;
+              break;
+            case "-":
+              newResult = result - value;
+              break;
+            case "*":
+              newResult = result * value;
+              break;
+            case "/":
+              newResult = result / value;
+              break;
           }
-          if (op === "-") {
-            search(
-              result - value,
-              expression +
-                expressionToString(result, value, "-", result - value),
-              subList
-            );
-          }
-          if (op === "*") {
-            search(
-              result * value,
-              expression +
-                expressionToString(result, value, "*", result * value),
-              subList
-            );
-          }
-          if (op === "/") {
-            search(
-              result / value,
-              expression +
-                expressionToString(result, value, "/", result / value),
-              subList
-            );
-          }
+
+          const newExpression = expressionToString(
+            result,
+            value,
+            op,
+            newResult
+          );
+          search(
+            newResult,
+            expression + newExpression,
+            subList,
+            operationComplexity[op] * depth,
+            depth + 1
+          );
         });
       });
     }
