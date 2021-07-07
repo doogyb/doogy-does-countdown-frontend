@@ -87,7 +87,7 @@ $(function () {
 
   let countdown;
   $("#start_timer").on("click", function () {
-    const audio = new Audio("audio/countdown.mp3");
+    const audio = new Audio("assets/audio/countdown.mp3");
     audio.play();
     currentStep = 1;
     countdown = setInterval(rotateClockHand, clockInterval);
