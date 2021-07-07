@@ -10,7 +10,7 @@ import { solveLetters, solveNumbers } from "./answers.js";
 let consonants = Object.assign({}, consonantDistribution);
 let vowels = Object.assign({}, vowelDistribution);
 
-const timerLength = 1;
+const timerLength = 30;
 const steps = timerLength * 100;
 const clockInterval = (1000 * timerLength) / steps;
 let gameType = "letters";

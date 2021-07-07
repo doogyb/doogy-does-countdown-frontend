@@ -15,7 +15,7 @@ h1, .h1,
 
 #curve {
   height: 56px;
-  background-image: url(../img/curve.png);
+  background-image: url(../assets/img/curve.png);
 }
 
 #main {
@@ -39,7 +39,7 @@ h1, .h1,
   margin: auto;
   width: 500px;
   height: 500px;
-  background-image: url(../img/clock/clock.svg);
+  background-image: url(../assets/img/clock/clock.svg);
   /* Center and scale the image nicely */
   background-position: center;
   background-repeat: no-repeat;
@@ -52,7 +52,7 @@ h1, .h1,
 #clock_hand {
   width: 30px;
   height: 600px;
-  background: url(../img/clock/sechand.png);
+  background: url(../assets/img/clock/sechand.png);
   z-index: 3;
 }
 

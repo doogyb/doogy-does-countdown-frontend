@@ -18,7 +18,7 @@ h1,
 
 #curve {
   height: 56px;
-  background-image: url(../img/curve.png);
+  background-image: url(../assets/img/curve.png);
 }
 
 @mixin center-children {
@@ -56,7 +56,7 @@ $clock_radius: 500px;
 
   width: $clock_radius;
   height: $clock_radius;
-  background-image: url(../img/clock/clock.svg);
+  background-image: url(../assets/img/clock/clock.svg);
 
   /* Center and scale the image nicely */
   background-position: center;
@@ -69,7 +69,7 @@ $clock_radius: 500px;
 #clock_hand {
   width: 30px;
   height: 600px;
-  background: url(../img/clock/sechand.png);
+  background: url(../assets/img/clock/sechand.png);
   z-index: 3;
 }
 
