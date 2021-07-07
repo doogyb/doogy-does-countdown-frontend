@@ -4,6 +4,11 @@ h1, .h1,
   font-family: "Poppins", sans-serif;
 }
 
+#letter-chooser {
+  padding: 40px 0 !important;
+  background: #00b9af !important;
+}
+
 #banner_container {
   background: #00b9af;
   margin-bottom: 0px;
@@ -66,7 +71,7 @@ h1, .h1,
 }
 
 .boxes {
-  padding: 45px;
+  padding: 20px;
   background: #245b86;
 }
 .boxes #letters.row {
@@ -107,7 +112,7 @@ button {
 
 #main .button_row {
   padding: 20px 0;
-  background: #00b9af;
+  background: #245b86;
 }
 
 #answers {
