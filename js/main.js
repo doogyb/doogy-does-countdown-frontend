@@ -97,7 +97,7 @@ $(function () {
   let scramble;
   $("#generate").on("click", function () {
     currentScramble = 0;
-    scramble = setInterval(randomScramble, 1);
+    scramble = setInterval(randomScramble, 100);
   });
 
   let currentLetter = 0;
