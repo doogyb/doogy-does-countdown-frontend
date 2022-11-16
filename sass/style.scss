@@ -66,7 +66,7 @@ $clock_radius: 500px;
   /* Center and scale the image nicely */
   background-position: center;
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: contain;
 
   @include center-children;
 }
@@ -108,27 +108,35 @@ $letter_box_size: 150px;
 
 .letter_box {
   background-color: #4a6fb6;
-  margin: auto;
-  width: $letter_box_size;
-  height: $letter_box_size;
-
-  // border: solid white 4px;
+  margin: 0 5px;
+  min-height: 50px;
+  height: 10vw;
 
   border-top: solid #6f90ca 6px;
   border-bottom: solid #2d55a6 6px;
 
   text-align: center;
-  font-size: 95px;
+  font-size: 5vw;
   color: white;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 #numbers {
   .letter_box {
     padding-top: 5px;
     font-size: 80px;
+    font-size: 4.8vw;
   }
 }
 
+#target_row {
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+}
 #target {
   width: 450px;
 }
