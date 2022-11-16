@@ -66,8 +66,15 @@ $(function () {
     }
   }
 
-  let currentStep = 1;
+  function setClockHandHeight() {
+    const maxClockWidth = 476; 
+    const clockWidth = $("#clock").width();
+    $("#clock_hand").css('transform', `scale(${clockWidth/maxClockWidth})`) 
+  }
+  setClockHandHeight();
+  $(window).on("resize", setClockHandHeight); 
 
+  let currentStep = 1;
   function rotateClockHand() {
     // var seconds = new Date().getSeconds();
     const sdegree = (currentStep / steps) * (timerLength * 6);
@@ -86,8 +93,9 @@ $(function () {
   }
 
   let countdown;
+  const audio = new Audio("assets/audio/countdown.mp3");
   $("#start_timer").on("click", function () {
-    const audio = new Audio("assets/audio/countdown.mp3");
+    
     audio.play();
     currentStep = 1;
     countdown = setInterval(rotateClockHand, clockInterval);
@@ -106,6 +114,10 @@ $(function () {
     // Reset letter counts
     consonants = Object.assign({}, consonantDistribution);
     vowels = Object.assign({}, vowelDistribution);
+
+    clearInterval(countdown);
+    audio.pause();
+    audio.currentTime = 0;
 
     $("#answer_button").prop("disabled", true);
     $("#start_timer").prop("disabled", true);

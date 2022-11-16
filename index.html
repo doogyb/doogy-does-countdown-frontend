@@ -1,226 +1,223 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Doogy Counts Down ⬇</title>
 
-    <!-- favicon stuff-->
-    <!-- prettier-ignore -->
-    <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png">
-    <!-- prettier-ignore -->
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png">
-    <!-- prettier-ignore -->
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png">
-    <!-- prettier-ignore -->
-    <link rel="manifest" href="/favicons/site.webmanifest">
-    <!-- prettier-ignore -->
-    <link rel="mask-icon" href="/favicons/safari-pinned-tab.svg" color="#5bbad5">
-    <!-- prettier-ignore -->
-    <link rel="shortcut icon" href="/favicons/favicon.ico">
-    <!-- prettier-ignore -->
-    <meta name="msapplication-TileColor" content="#da532c">
-    <!-- prettier-ignore -->
-    <meta name="msapplication-config" content="/favicons/browserconfig.xml">
-    <!-- prettier-ignore -->
-    <meta name="theme-color" content="#ffffff">
-    <!-- prettier-ignore -->
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Doogy Counts Down ⬇</title>
 
-    <link rel="stylesheet" type="text/css" href="node_modules/bootstrap/dist/css/bootstrap.css"/>
-    <link rel="stylesheet" type="text/css" href="css/style.css" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" />
-    <!-- prettier-ignore -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@800&display=swap" rel="stylesheet"/>
-  </head>
+  <!-- favicon stuff-->
+  <!-- prettier-ignore -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicons/apple-touch-icon.png">
+  <!-- prettier-ignore -->
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicons/favicon-32x32.png">
+  <!-- prettier-ignore -->
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicons/favicon-16x16.png">
+  <!-- prettier-ignore -->
+  <link rel="manifest" href="/favicons/site.webmanifest">
+  <!-- prettier-ignore -->
+  <link rel="mask-icon" href="/favicons/safari-pinned-tab.svg" color="#5bbad5">
+  <!-- prettier-ignore -->
+  <link rel="shortcut icon" href="/favicons/favicon.ico">
+  <!-- prettier-ignore -->
+  <meta name="msapplication-TileColor" content="#da532c">
+  <!-- prettier-ignore -->
+  <meta name="msapplication-config" content="/favicons/browserconfig.xml">
+  <!-- prettier-ignore -->
+  <meta name="theme-color" content="#ffffff">
+  <!-- prettier-ignore -->
 
-  <body>
-    <div id="main" class="container">
-      <div id="banner_container" class="container">
-        <h1 id="banner" class="display-1">DOOGY COUNTS DOWN</h1>
-      </div>
-      <div id="curve" class="container"></div>
+  <link rel="stylesheet" type="text/css" href="node_modules/bootstrap/dist/css/bootstrap.css" />
+  <link rel="stylesheet" type="text/css" href="css/style.css" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" />
+  <!-- prettier-ignore -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@800&display=swap" rel="stylesheet" />
+</head>
 
-      <div id="clock_container" class="container">
-        <div class="row">
-          <div id="clock">
-            <div id="clock_hand"></div>
-          </div>
+<body>
+  <div id="main" class="container">
+    <div id="banner_container" class="container">
+      <h1 id="banner" class="display-1">DOOGY COUNTS DOWN</h1>
+    </div>
+    <div id="curve" class="container"></div>
+
+    <div id="clock_container" class="container">
+      <div class="row">
+        <div id="clock">
+          <div id="clock_hand"></div>
         </div>
-      </div>
-
-      <div id="game_selector" class="container">
-        <div class="row">
-          <div class="col d-flex justify-content-center">
-            <div class="btn-group">
-              <button
-                id="letter_selector"
-                class="btn btn-primary btn-lg"
-                disabled
-              >
-                Letters
-              </button>
-              <button id="number_selector" class="btn btn-primary btn-lg">
-                Numbers
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div id="letters_container" class="container boxes">
-        <div id="letters" class="row">
-          <div class="col-sm">
-            <div class="letter_box"></div>
-          </div>
-
-          <div class="col-sm">
-            <div class="letter_box"></div>
-          </div>
-
-          <div class="col-sm">
-            <div class="letter_box"></div>
-          </div>
-
-          <div class="col-sm">
-            <div class="letter_box"></div>
-          </div>
-
-          <div class="col-sm">
-            <div class="letter_box"></div>
-          </div>
-
-          <div class="col-sm">
-            <div class="letter_box"></div>
-          </div>
-
-          <div class="col-sm">
-            <div class="letter_box"></div>
-          </div>
-
-          <div class="col-sm">
-            <div class="letter_box"></div>
-          </div>
-
-          <div class="col-sm">
-            <div class="letter_box"></div>
-          </div>
-        </div>
-      </div>
-
-      <div id="numbers_container" class="container boxes">
-        <div id="target_row" class="numbers row">
-          <div class="col-sm">
-            <div id="target" class="letter_box"></div>
-          </div>
-        </div>
-
-        <div class="row padrow">
-          <div class="col d-flex justify-content-center">
-            <button id="generate" class="btn btn-primary" disabled>
-              Generate
-            </button>
-          </div>
-        </div>
-
-        <div id="numbers" class="numbers row">
-          <div class="col-sm">
-            <div class="letter_box"></div>
-          </div>
-
-          <div class="col-sm">
-            <div class="letter_box"></div>
-          </div>
-
-          <div class="col-sm">
-            <div class="letter_box"></div>
-          </div>
-
-          <div class="col-sm">
-            <div class="letter_box"></div>
-          </div>
-
-          <div class="col-sm">
-            <div class="letter_box"></div>
-          </div>
-
-          <div class="col-sm">
-            <div class="letter_box"></div>
-          </div>
-        </div>
-      </div>
-
-      <div id="letter_buttons" class="button_row container">
-        <div class="row">
-          <div class="col d-flex justify-content-center">
-            <div class="btn-group">
-              <button id="vowel" class="letter_button btn btn-primary btn-lg">
-                Vowel
-              </button>
-              <button
-                id="consonant"
-                class="letter_button btn btn-primary btn-lg"
-              >
-                Consonant
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div id="number_buttons" class="button_row container">
-        <div class="row">
-          <div class="col d-flex justify-content-center">
-            <div class="btn-group">
-              <button id="large" class="letter_button btn btn-primary btn-lg">
-                Large
-              </button>
-              <button id="small" class="letter_button btn btn-primary btn-lg">
-                Small
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="button_row container" id="letter-chooser">
-        <div class="row">
-          <div class="col d-flex justify-content-center">
-            <div class="btn-group">
-              <button id="start_timer" class="btn btn-primary btn-lg" disabled>
-                GO
-              </button>
-              <button id="reset_timer" class="btn btn-primary btn-lg">
-                Reset
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div id="answers" class="container">
-        <div class="row">
-          <div class="col d-flex justify-content-center">
-            <button id="answer_button" class="btn btn-primary" disabled>
-              Answers
-            </button>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col d-flex justify-content-center p-4">
-            <div id="answer_display"></div>
-          </div>
-        </div>
-
-        <div
-          id="footer"
-          class="row"
-          style="height: 100%; background: black"
-        ></div>
       </div>
     </div>
 
-    <script type="module" src="dist/bundle.js"></script>
-  </body>
+    <div id="game_selector" class="container">
+      <div class="row">
+        <div class="col d-flex justify-content-center">
+          <div class="btn-group">
+            <button
+                    id="letter_selector"
+                    class="btn btn-primary btn-lg"
+                    disabled>
+              Letters
+            </button>
+            <button id="number_selector" class="btn btn-primary btn-lg">
+              Numbers
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="letters_container" class="container boxes">
+      <div id="letters" class="d-flex">
+        <div class="col">
+          <div class="letter_box"></div>
+        </div>
+
+        <div class="col">
+          <div class="letter_box"></div>
+        </div>
+
+        <div class="col">
+          <div class="letter_box"></div>
+        </div>
+
+        <div class="col">
+          <div class="letter_box"></div>
+        </div>
+
+        <div class="col">
+          <div class="letter_box"></div>
+        </div>
+
+        <div class="col">
+          <div class="letter_box"></div>
+        </div>
+
+        <div class="col">
+          <div class="letter_box"></div>
+        </div>
+
+        <div class="col">
+          <div class="letter_box"></div>
+        </div>
+
+        <div class="col">
+          <div class="letter_box"></div>
+        </div>
+      </div>
+    </div>
+
+    <div id="numbers_container" class="container boxes">
+      <div id="target_row" class="numbers row">
+        <div id="target" class="letter_box"></div>
+      </div>
+
+      <div class="row padrow">
+        <div class="col d-flex justify-content-center">
+          <button id="generate" class="btn btn-primary" disabled>
+            Generate
+          </button>
+        </div>
+      </div>
+
+      <div id="numbers" class="numbers d-flex">
+        <div class="col">
+          <div class="letter_box"></div>
+        </div>
+
+        <div class="col">
+          <div class="letter_box"></div>
+        </div>
+
+        <div class="col">
+          <div class="letter_box"></div>
+        </div>
+
+        <div class="col">
+          <div class="letter_box"></div>
+        </div>
+
+        <div class="col">
+          <div class="letter_box"></div>
+        </div>
+
+        <div class="col">
+          <div class="letter_box"></div>
+        </div>
+      </div>
+    </div>
+
+    <div id="letter_buttons" class="button_row container">
+      <div class="row">
+        <div class="col d-flex justify-content-center">
+          <div class="btn-group">
+            <button id="vowel" class="letter_button btn btn-primary btn-lg">
+              Vowel
+            </button>
+            <button
+                    id="consonant"
+                    class="letter_button btn btn-primary btn-lg">
+              Consonant
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="number_buttons" class="button_row container">
+      <div class="row">
+        <div class="col d-flex justify-content-center">
+          <div class="btn-group">
+            <button id="large" class="letter_button btn btn-primary btn-lg">
+              Large
+            </button>
+            <button id="small" class="letter_button btn btn-primary btn-lg">
+              Small
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="button_row container" id="letter-chooser">
+      <div class="row">
+        <div class="col d-flex justify-content-center">
+          <div class="btn-group">
+            <button id="start_timer" class="btn btn-primary btn-lg" disabled>
+              GO
+            </button>
+            <button id="reset_timer" class="btn btn-primary btn-lg">
+              Reset
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="answers" class="container">
+      <div class="row">
+        <div class="col d-flex justify-content-center">
+          <button id="answer_button" class="btn btn-primary" disabled>
+            Answers
+          </button>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col d-flex justify-content-center p-4">
+          <div id="answer_display"></div>
+        </div>
+      </div>
+
+      <div
+           id="footer"
+           class="row"
+           style="height: 100%; background: black"></div>
+    </div>
+  </div>
+
+  <script type="module" src="dist/bundle.js"></script>
+</body>
+
 </html>
